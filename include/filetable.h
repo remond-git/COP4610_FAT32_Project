@@ -4,7 +4,7 @@
 typedef struct FTEntry {
   char name[32];
   char mode[8];
-  struct FTEntry* next;
+  FileTable* next;
 } FileTable;
 
 void FTAdd(const char* fileName, const char* mode);
