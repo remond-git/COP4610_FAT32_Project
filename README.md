@@ -11,7 +11,12 @@ Filename: `proj_3_gonzalez_sanchez_stringfellow.tar`
 
 ```
 .
-└─ README.md // Markdown file containing documentation of our implementation of the assignment.
+├─ README.md // Markdown file containing documentation of our implementation of the assignment.
+├─ Makefile // Compiles the source code into a binary.
+├─ include
+│  └─ filetable.h // Declarations of the file allocation table and its helper functions.
+└─ src
+   └─ filetable.c // Definitions of the file allocation table helper functions.
 ```
 
 ## Build Instructions
