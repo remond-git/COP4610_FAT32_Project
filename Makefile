@@ -1,8 +1,8 @@
-fileSystem: fileSystem.o
-	gcc -o fileSystem.x fileSystem.o
+FAT32Utility: Shell.o
+	gcc -o FAT32Utility.x Shell.o
 
-fileSystem.o: src/filetable.c
-	gcc -c src/filetable.c
+Shell.o: src/Shell.c
+	gcc -c src/Shell.
 
 clean:
 	rm *.o *.x
