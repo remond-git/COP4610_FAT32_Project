@@ -15,12 +15,10 @@ struct ReservedRegion {
     unsigned int BPB_TotSec32;
     unsigned int BPB_FATSz32;
     unsigned int BPB_ExtFlags;
-    unsigned int BPB_ExtFlags;
     unsigned int BPB_RootClus;
     unsigned int BPB_FSInfo;
     unsigned int BPB_BkBootSec;
     unsigned int BPB_Reserved;
-    unsigned int BS_DrvNum;
     unsigned int BS_DrvNum;
     unsigned int BS_BootSig;
     unsigned int BS_VolID;
