@@ -51,6 +51,8 @@ int shell_write(char **args);
 int shell_rm(char **args);
 int shell_rmdir(char **args);
 
+char* current_path();
+
 
 char *builtin[] = {
   "cd",
@@ -86,7 +88,9 @@ int (*builtin_func[]) (char **) = {
 
 /*
 
+==========
 MAIN
+==========
 
 */
 
@@ -97,17 +101,17 @@ int main(int argc, char **argv) {
     } else if (argc > 3) {
         printf("Error: Too many arguments supplied.\n");
     }
-    
+
     FILE *image = fopen(argv[1], "rb+");
-    
+
     if (image == NULL) {
         printf("Error: Could not open FAT32 image file.\n");
-        
+
         return 1;
     } else {
         printf("Success: FAT32 image file successfully opened.\n");
     }
-    
+
     fseek(image, 3, SEEK_SET);
     char oemName[8];
     fread(oemName, sizeof(char), 8, image);
@@ -120,14 +124,6 @@ int main(int argc, char **argv) {
 
 /*
 
-Old Shell
-
-*/
-
-
-
-/*
-
 PROMPT
 
 */
@@ -135,14 +131,20 @@ PROMPT
 static int io_flag = 0;
 
 void fullPrompt() {
-  long num;
-  char *b;
-  char *path;
-  path = getcwd(b, (size_t)num);
-  if(path == NULL)
-    printf("%s@%s :: %s -> ", getenv("USER"), getenv("MACHINE"), getenv("PWD"));
-  else
-    printf("%s@%s :: %s -> ", getenv("USER"), getenv("MACHINE"), path);
+  char* img_file = argv[1];
+  char* current_path = current_path();
+
+
+  printf("%s : %s" , img_file , current_path)
+
+}
+
+char* current_path(){
+  /*
+
+Code to find pwd...
+
+  */
 }
 
 static const char prompt[] = "";
@@ -150,40 +152,6 @@ static const char prompt[] = "";
 struct timespec start, stop;
 
 static int args_size = 0;
-
-/*
-
-Environment Variable Handler:
-
-Takes in Environment Variable argument
-and returns variable value
-
-*/
-
-char* env_var_switch(char* var){
-  char *a;
-
-  if (strcmp(var,"$PATH") == 0){
-    a = getenv("PATH");
-    return(a);      // Get Path
-  } else if (strcmp(var,"$HOME") == 0 || strcmp(var,"~") == 0){
-    a = getenv("HOME");
-    return(a);      // Get Home Path
-  }
- else if (strcmp(var,"$USER") == 0){
-   a = getenv("USER");
-   return(a);      // Get User
-} else if (strcmp(var,"$SHELL") == 0){
-  a = getenv("SHELL");
-  return(a);      // Get Shell
-} else if (strcmp(var,"$PWD") == 0){
-  a = getenv("PWD");
-  return(a);      // Get Current Path
-}
-
-return var;
-
-}
 
 int shell_launch(char **args) {
   pid_t p, wp;
@@ -372,8 +340,7 @@ char **shell_split(char *line) {
   while(token != NULL) {
     char * temp;
     temp = token;
-    char * temp2 = env_var_switch(temp);
-    tokens[position] = temp2;
+    tokens[position] = temp;
     position++;
     if(position >= buff) {
       buff += TOK_BUFF;
@@ -392,7 +359,11 @@ char **shell_split(char *line) {
 
 /*
 
+
+==========
 MAIN LOOP
+==========
+
 
 */
 
