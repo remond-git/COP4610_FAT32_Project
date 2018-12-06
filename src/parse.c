@@ -7,8 +7,7 @@ const char PREVDIR[11] = "..         ";
 const char CURRDIR[11] = ".          ";
 int i;
 
-void ToFAT32(char * input)
-{
+void ToFAT32(char * input) {
    char FAT32string [13] = " ", temp [13] = " ";
    short inputSize = strlen(input);
    short count_spaces = 11 - inputSize;
@@ -35,8 +34,9 @@ void ToFAT32(char * input)
        }
 	   i++;
    }
-   for(i = inputSize; i < 12; i++)
+   for(i = inputSize; i < 12; i++) {
        FAT32string[i] = ' ';
+   }
    strcpy(temp, FAT32string);
 
    for(i = 0; i < 11; i++) {
