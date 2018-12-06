@@ -37,8 +37,6 @@ int num_builtins() {
   return sizeof(builtin) / sizeof(char *);
 }
 
-int OpenFAT32Image(char* filename);
-
 int shell_cd(char **args);
 int shell_exit(char **args);
 int shell_info(char **args);
@@ -95,31 +93,36 @@ MAIN
 
 int main(int argc, char **argv) {
     if (argc < 2) {
-        printf("Error: No FAT32 file system image supplied.\n");
-    } else if (argc == 2) {
-        if !OpenFAT32Image(argv[1]) {
-            printf("Error: Could not open FAT32 file system image.\n");
-        }
+        printf("Error: No FAT32 image file supplied.\n");
+    } else if (argc > 3) {
+        printf("Error: Too many arguments supplied.\n");
     }
+    
+    FILE *image = fopen(argv[1], "rb+");
+    
+    if (image == NULL) {
+        printf("Error: Could not open FAT32 image file.\n");
+        
+        return 1;
+    } else {
+        printf("Success: FAT32 image file successfully opened.\n");
+    }
+    
+    fseek(image, 3, SEEK_SET);
+    char oemName[8];
+    fread(oemName, sizeof(char), 8, image);
+    printf("OEMName: %s\n", oemName);
+
     shell_loop();              // Main Loop
     printf("poot");
     return EXIT_SUCCESS;          // Exit
 }
-
-void OpenFAT32Image(char* filename) {
-
-}
-
-
-
 
 /*
 
 Old Shell
 
 */
-
-
 
 
 
@@ -147,8 +150,6 @@ static const char prompt[] = "";
 struct timespec start, stop;
 
 static int args_size = 0;
-
-
 
 /*
 
