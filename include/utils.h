@@ -1,5 +1,5 @@
-#ifndef _UTILITY_H
-#define _UTILITY_H
+#ifndef _UTILS_H
+#define _UTILS_H
 
 void OpenImageFile(const char* name);
 void CloseImageFile();
