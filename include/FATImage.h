@@ -1,6 +1,6 @@
 struct ReservedRegion {
     unsigned int BS_jmpBoot;
-    char[8] BS_OEMName;
+    char BS_OEMName[8];
     short BPB_BytsPerSec;
     short BPB_SecPerClus;
     short BPB_RsvdSecCnt;
@@ -23,9 +23,5 @@ struct ReservedRegion {
     unsigned int BS_BootSig;
     unsigned int BS_VolID;
     unsigned int BS_VolLab;
-    char[8] BS_FilSysType;
-};
-
-typedef struct FAT32Image {
-    struct ReservedRegion;
+    char BS_FilSysType[8];
 };
