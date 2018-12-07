@@ -1,15 +1,27 @@
+FLAGS = -std=c99
 
-FAT32Utility:	Shell.o utils.o dirparse.o
-	gcc -o FAT32Utility.x Shell.o utils.o dirparse.o -lreadline
+all:	exe
 
-Shell.o: src/Shell.c include/utils.h include/dirparse.h
-	gcc -c src/Shell.c
+exe:	main.o utils.o filetable.o dirparse.o parse.o program.o
+	gcc $(FLAGS) -o FATprog.x main.o utils.o filetable.o dirparse.o parse.o program.o
 
-utils.o: src/utils.c include/utils.h
-	gcc -c src/utils.c
+main.o:	main.c
+	gcc $(FLAGS) -c main.c
 
-dirparse.o: src/dirparse.c include/dirparse.h include/utils.h
-		gcc -c src/dirparse.c
+filetable.o: filetable.c filetable.h
+	gcc $(FLAGS) -c filetable.c
+
+utils.o: utils.c utils.h
+	gcc $(FLAGS) -c utils.c
+
+parse.o: parse.c parse.h
+	gcc $(FLAGS) -c parse.c
+
+dirparse.o: dirparse.c dirparse.h
+	gcc $(FLAGS) -c dirparse.c
+
+program.o: program.c program.h
+	gcc $(FLAGS) -c program.c
 
 clean:
 	rm *.o *.x
