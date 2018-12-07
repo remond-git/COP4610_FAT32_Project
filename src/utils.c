@@ -13,6 +13,7 @@ unsigned int FAT_StartLoc, FAT_EndLoc;
 
 void OpenImageFile(const char* name) {
   ImageFile = fopen(name, "r+b");
+  ImageFileName = name;
   if (ImageFile == NULL) {
 	  printf("Image file could not be opened...\n");
 	  exit(-1);
