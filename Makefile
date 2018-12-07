@@ -19,6 +19,12 @@ parse.o: parse.c parse.h
 
 dirparse.o: dirparse.c dirparse.h
 	gcc $(FLAGS) -c dirparse.c
+	
+ls.o: ls.c ls.h
+	gcc $(FLAGS) -c ls.c
+	
+creat.o: creat.c creat.h
+	gcc $(FLAGS) -c creat.c
 
 program.o: program.c program.h
 	gcc $(FLAGS) -c program.c
