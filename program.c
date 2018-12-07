@@ -8,9 +8,9 @@
 #include <string.h>
 char* USER_INPUT[5];
 
-void RunProgram(void) {
+void RunProgram(char* prompt) {
 	while (1) {
-		printf("> ", ImageFileName);
+		printf("%s> ", prompt);
 		GetUserInput();
 		if (strcmp(USER_INPUT[0], "exit") == 0) {
 			break;
