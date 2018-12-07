@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "../include/FATImage.h"
 #include "../include/filetable.h"
+#include "../include/utils.h"
+
 #include <dirent.h>
 #include <sys/wait.h>
 #include <sys/time.h>
@@ -98,28 +100,17 @@ MAIN
 int main(int argc, char **argv) {
     if (argc < 2) {
         printf("Error: No FAT32 image file supplied.\n");
-    } else if (argc > 3) {
+        return EXIT_FAILURE;
+    } else if (argc > 2) {
         printf("Error: Too many arguments supplied.\n");
+        return EXIT_FAILURE;
     }
 
-    FILE *image = fopen(argv[1], "rb+");
+    OpenImageFile(argv[1]);
 
-    if (image == NULL) {
-        printf("Error: Could not open FAT32 image file.\n");
-
-        return 1;
-    } else {
-        printf("Success: FAT32 image file successfully opened.\n");
-    }
-
-    fseek(image, 3, SEEK_SET);
-    char oemName[8];
-    fread(oemName, sizeof(char), 8, image);
-    printf("OEMName: %s\n", oemName);
-
-    shell_loop();              // Main Loop
-    printf("poot");
-    return EXIT_SUCCESS;          // Exit
+    shell_loop();
+    
+    return EXIT_SUCCESS;
 }
 
 /*
