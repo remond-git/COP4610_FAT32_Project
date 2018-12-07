@@ -3,14 +3,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-FileTable* root = NULL;
+struct FileTable* root = NULL;
 
 void FTAdd(const char* fileName, const char* mode) {
 	if (FTIsOpen(fileName)) {
 		printf("File already open.\n");
 	}
 	else {
-		FileTable* tmp = calloc(1, sizeof(FileTable));
+		struct FileTable* tmp = calloc(1, sizeof(struct FileTable));
 		strcpy(tmp->name, fileName);
 		strcpy(tmp->mode, mode);
 		tmp->next = NULL;
@@ -18,7 +18,7 @@ void FTAdd(const char* fileName, const char* mode) {
 			root = tmp;
 		}
 		else {
-			FileTable* itr = root;
+			struct FileTable* itr = root;
 			while (itr->next != NULL) {
 				itr = itr->next;
 			}
@@ -79,7 +79,7 @@ int FTIsOpenInWrite(const char* file_name) {
 }
 
 void FTPrint() {
-	printf("\n\nFILE TABLE: \n");	
+	printf("\n\nFILE TABLE: \n");
 	if (root != NULL) {
 		FileTable* itr = root;
 		FTPrintEntry(root);
@@ -90,7 +90,7 @@ void FTPrint() {
 	}
 }
 
-void FTPrintEntry(FileTable* ent) {
+void FTPrintEntry(struct FileTable* ent) {
 	printf("--------------------------------\n");
 	printf("File name: %s\nFile mode: %s\n", ent->name, ent->mode);
 	printf("--------------------------------\n");

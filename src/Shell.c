@@ -2,7 +2,10 @@
 #include "../include/FATImage.h"
 #include "../include/filetable.h"
 #include "../include/utils.h"
+#include "../include/parse.h"
+#include "../include/dirparse.h"
 
+#include <stdlib.h>
 #include <dirent.h>
 #include <sys/wait.h>
 #include <sys/time.h>
@@ -35,6 +38,22 @@ Extra Credit: rmdir, 5 pts
 
 */
 
+char *builtin[] = {
+  "cd",
+  "exit",
+  "info",
+  "ls",
+  "size",
+  "creat",
+  "mkdir",
+  "open",
+  "close",
+  "read",
+  "write",
+  "rm",
+  "rmdir"
+};
+
 int num_builtins() {
   return sizeof(builtin) / sizeof(char *);
 }
@@ -56,21 +75,6 @@ int shell_rmdir(char **args);
 char* current_path();
 
 
-char *builtin[] = {
-  "cd",
-  "exit",
-  "info",
-  "ls",
-  "size",
-  "creat",
-  "mkdir",
-  "open",
-  "close",
-  "read",
-  "write",
-  "rm",
-  "rmdir"
-};
 
 int (*builtin_func[]) (char **) = {
   &shell_cd,
@@ -109,7 +113,7 @@ int main(int argc, char **argv) {
     OpenImageFile(argv[1]);
 
     shell_loop();
-    
+
     return EXIT_SUCCESS;
 }
 
@@ -121,22 +125,25 @@ PROMPT
 
 static int io_flag = 0;
 
-void fullPrompt() {
-  char* img_file = argv[1];
-  char* current_path = current_path();
-
-
-  printf("%s : %s" , img_file , current_path)
-
-}
-
-char* current_path(){
+char* path(){
+  char* path = "";
   /*
 
 Code to find pwd...
 
   */
+  return path;
 }
+
+void fullPrompt() {
+  char* current_path = path();
+
+
+  printf("%s : %s" , ImageFileName , current_path);
+
+}
+
+
 
 static const char prompt[] = "";
 

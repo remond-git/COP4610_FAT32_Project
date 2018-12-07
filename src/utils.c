@@ -1,5 +1,5 @@
-#include "utils.h"
-#include "FATImage.h"
+#include "../include/utils.h"
+#include "../include/FATImage.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -17,7 +17,7 @@ void OpenImageFile(const char* name) {
   if (ImageFile == NULL) {
 	  printf("Image file could not be opened...\n");
 	  exit(-1);
-  }	
+  }
 }
 
 void CloseImageFile() {
@@ -48,7 +48,7 @@ void ParseBootSector(void) {
   int FATOffset, ThisFATSecNum;
 
   fseek(ImageFile, 11, SEEK_SET);
-  fread(store_bytes, sizeof(char), 2, ImageFile);		
+  fread(store_bytes, sizeof(char), 2, ImageFile);
   rr->BPB_BytsPerSec = store_bytes[0];
 
   fseek(ImageFile, 13, SEEK_SET);
@@ -66,17 +66,17 @@ void ParseBootSector(void) {
   fseek(ImageFile, 36, SEEK_SET);
   fread(store_bytes, sizeof(char), 4, ImageFile);
   rr->BPB_FATSz32 = little_to_big(store_bytes, 4);
-    
+
   // root cluster
   fseek(ImageFile, 44, SEEK_SET);
   fread(store_bytes, sizeof(char), 4, ImageFile);
   rr->BPB_RootClus = little_to_big(store_bytes, 4);
 
   FindFirstSectorOfCluster(rr->BPB_RootClus);
-    
+
   FATOffset = rr->BPB_RootClus * 4;
   ThisFATSecNum =  rr->BPB_RsvdSecCnt + (FATOffset / rr->BPB_BytsPerSec);
-    
+
   FAT_StartLoc = ThisFATSecNum*rr->BPB_BytsPerSec;
   FAT_EndLoc = rr->BPB_FATSz32 * rr->BPB_BytsPerSec + FAT_StartLoc;
 }
@@ -143,7 +143,7 @@ unsigned int FindNextFreeCluster(void) {
   unsigned short store_bytes[4];
   unsigned int seek_pos = FAT_StartLoc;
   unsigned int cluster_number = 0;
-    
+
     do {
       fseek(ImageFile, seek_pos, SEEK_SET);
       fread(store_bytes, sizeof(char), 4, ImageFile);
