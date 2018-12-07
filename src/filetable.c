@@ -10,7 +10,7 @@ void FTAdd(const char* fileName, const char* mode) {
 		printf("File already open.\n");
 	}
 	else {
-		struct FileTable* tmp = calloc(1, sizeof(FileTable));
+		struct FileTable* tmp = calloc(1, sizeof(struct FileTable));
 		strcpy(tmp->name, fileName);
 		strcpy(tmp->mode, mode);
 		tmp->next = NULL;
