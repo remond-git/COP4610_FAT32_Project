@@ -90,7 +90,7 @@ void FTPrint() {
 	}
 }
 
-void FTPrintEntry(FileTable* ent) {
+void FTPrintEntry(struct FileTable* ent) {
 	printf("--------------------------------\n");
 	printf("File name: %s\nFile mode: %s\n", ent->name, ent->mode);
 	printf("--------------------------------\n");
