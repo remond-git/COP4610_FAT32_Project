@@ -405,33 +405,8 @@ BUILT IN: LS
 */
 
 int shell_ls(char **args) {
-  DIR *d;
-  struct dirent *dir;
-  d = opendir(".");
-  if(args[1] == NULL) {
-    if(d) {
-      while((dir = readdir(d))) {
-        printf("%s  ", dir->d_name);
-      }
-      printf("\n");
-      closedir(d);
-    }
-    else
-      perror("Could not open directory");
-  }
-  else {
 
-    d = opendir(args[1]);
-    if(d) {
-      while((dir = readdir(d))) {
-        printf("%s  ", dir->d_name);
-      }
-      printf("\n");
-      closedir(d);
-    }
-    else
-      perror("Could not open directory");
-  }
+  PrintDirectoryVector(GetDirectoryContents(GetCurrentDirectoryClusterNum()));
   return 1;
 }
 
