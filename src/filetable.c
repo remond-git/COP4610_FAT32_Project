@@ -28,8 +28,8 @@ void FTAdd(const char* fileName, const char* mode) {
 }
 
 void FTRemove(const char* fileName) {
-	FileTable* itr1;
-	FileTable* itr2 = NULL;
+	struct FileTable* itr1;
+	struct FileTable* itr2 = NULL;
 	for (itr1 = root; itr1 != NULL; itr2 = itr1, itr1 = itr1->next) {
 		if (strcmp(itr1->name, fileName) == 0) {
 			if (itr2 == NULL) {
@@ -45,7 +45,7 @@ void FTRemove(const char* fileName) {
 }
 
 int FTIsOpen(const char* fileName) {
-	FileTable* itr;
+	struct FileTable* itr;
 	for (itr = root; itr != NULL; itr = itr->next) {
 		if (strcmp(itr->name, fileName) == 0) {
 			return 1;
@@ -55,7 +55,7 @@ int FTIsOpen(const char* fileName) {
 }
 
 int FTIsOpenInRead(const char* fileName) {
-	FileTable* itr;
+	struct FileTable* itr;
 	for (itr = root; itr != NULL; itr = itr->next) {
 		if (strcmp(itr->name, fileName) == 0) {
 			if (strstr(itr->mode, "r") != NULL) {
@@ -67,7 +67,7 @@ int FTIsOpenInRead(const char* fileName) {
 }
 
 int FTIsOpenInWrite(const char* file_name) {
-	FileTable* itr;
+	struct FileTable* itr;
 	for (itr = root; itr != NULL; itr = itr->next) {
 		if (strcmp(itr->name, fileName) == 0) {
 			if (strstr(itr->mode, "w") != NULL) {
@@ -81,7 +81,7 @@ int FTIsOpenInWrite(const char* file_name) {
 void FTPrint() {
 	printf("\n\nFILE TABLE: \n");
 	if (root != NULL) {
-		FileTable* itr = root;
+		struct FileTable* itr = root;
 		FTPrintEntry(root);
 		while (itr->next != NULL) {
 			FTPrintEntry(itr->next);
@@ -97,8 +97,8 @@ void FTPrintEntry(struct FileTable* ent) {
 }
 
 void FTCleanup() {
-	FileTable* itr1 = root;
-	FileTable* itr2;
+	struct FileTable* itr1 = root;
+	struct FileTable* itr2;
 	while (itr1 != NULL) {
 		itr2 = itr1->next;
 		free(itr1);

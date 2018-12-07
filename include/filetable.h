@@ -1,7 +1,7 @@
 #ifndef _FILETABLE_H
 #define _FILETABLE_H
 
-typedef struct FTEntry {
+struct FileTable {
   char name[32];
   char mode[8];
   struct FileTable* next;
@@ -15,6 +15,5 @@ int FTIsOpenInWrite(const char* fileName);
 void FTPrint();
 void FTPrintEntry(struct FileTable* ent);
 void FTCleanup();
-void TestFileTable();
 
 #endif
