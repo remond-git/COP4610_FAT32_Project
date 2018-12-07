@@ -2,7 +2,7 @@ FLAGS = -std=c99
 
 all:	exe
 
-exe:	main.o utils.o filetable.o dirparse.o parse.o program.o ls.o creat.o
+exe:	main.o utils.o filetable.o dirparse.o parse.o program.o ls.o creat.o cd.o
 	gcc $(FLAGS) -o FATprog.x main.o utils.o filetable.o dirparse.o parse.o program.o ls.o creat.o cd.o
 
 main.o:	main.c
