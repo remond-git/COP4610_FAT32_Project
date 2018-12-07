@@ -2,7 +2,7 @@
 #define _UTILS_H
 #include <stdio.h>
 
-FILE* ImageFile;
+char* ImageFileName;
 
 void OpenImageFile(const char* name);
 void CloseImageFile();
