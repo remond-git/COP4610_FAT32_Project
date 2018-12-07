@@ -40,6 +40,23 @@ void RunProgram(void) {
 			creat(parsedDir);
 		  }
 		}
+		else if (strcmp(USER_INPUT[0], "mkdir") == 0) {
+		  if (strcmp(USER_INPUT[1],". . . . .") == 0) {
+		    printf("Requires an argument for the directory name\n");
+		  }
+		  else if (strcmp(USER_INPUT[1],".") == 0) {
+			printf("Invalid directory name\n");
+		  }
+		  else if (strcmp(USER_INPUT[1],"..") == 0) {
+			printf("Invalid directory name\n");
+		  }	
+		  else {
+			char parsedDir[USER_INPUT_BUFFER_LENGTH];
+			strcpy(parsedDir, USER_INPUT[1]);
+			ToFAT32(parsedDir);
+			mkdir(parsedDir);
+		  }
+		}
 	}
 	int k = 0;
 	while (k < 5) {
