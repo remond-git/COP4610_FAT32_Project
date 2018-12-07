@@ -7,6 +7,6 @@ int main(int argc, const char * argv[]) {
   OpenImageFile(argv[1]);
   ParseBootSector();
   SetCurrentDirectoryClusterNum(GetRootClusterNum());
-  RunProgram();
+  RunProgram(argv[1]);
   return 0; 
 }
