@@ -31,15 +31,15 @@ FILE* GetImageFile() {
 }
 
 short GetBytesPerSec(void) {
-  return rr->BPB_BytsPerSec;
+  return rr.BPB_BytsPerSec;
 }
 
 short GetSecPerClus(void) {
-  return rr->BPB_SecPerClus;
+  return rr.BPB_SecPerClus;
 }
 
 unsigned int GetRootClusterNum(void) {
-  return rr->BPB_RootClus;
+  return rr.BPB_RootClus;
 }
 
 void ParseBootSector(void) {
@@ -49,42 +49,42 @@ void ParseBootSector(void) {
 
   fseek(ImageFile, 11, SEEK_SET);
   fread(store_bytes, sizeof(char), 2, ImageFile);
-  rr->BPB_BytsPerSec = store_bytes[0];
+  rr.BPB_BytsPerSec = store_bytes[0];
 
   fseek(ImageFile, 13, SEEK_SET);
   fread(SPC, sizeof(char), 1, ImageFile);
-  rr->BPB_SecPerClus = little_to_big(SPC, 1);
+  rr.BPB_SecPerClus = little_to_big(SPC, 1);
 
   fseek(ImageFile, 14, SEEK_SET);
   fread(store_bytes, sizeof(char), 2, ImageFile);
-  rr->BPB_RsvdSecCnt = little_to_big(store_bytes, 2);
+  rr.BPB_RsvdSecCnt = little_to_big(store_bytes, 2);
 
   fseek(ImageFile, 16, SEEK_SET);
   fread(store_bytes, sizeof(char), 1, ImageFile);
-  rr->BPB_NumFATs = little_to_big(store_bytes, 1);
+  rr.BPB_NumFATs = little_to_big(store_bytes, 1);
 
   fseek(ImageFile, 36, SEEK_SET);
   fread(store_bytes, sizeof(char), 4, ImageFile);
-  rr->BPB_FATSz32 = little_to_big(store_bytes, 4);
+  rr.BPB_FATSz32 = little_to_big(store_bytes, 4);
 
   // root cluster
   fseek(ImageFile, 44, SEEK_SET);
   fread(store_bytes, sizeof(char), 4, ImageFile);
-  rr->BPB_RootClus = little_to_big(store_bytes, 4);
+  rr.BPB_RootClus = little_to_big(store_bytes, 4);
 
-  FindFirstSectorOfCluster(rr->BPB_RootClus);
+  FindFirstSectorOfCluster(rr.BPB_RootClus);
 
-  FATOffset = rr->BPB_RootClus * 4;
-  ThisFATSecNum =  rr->BPB_RsvdSecCnt + (FATOffset / rr->BPB_BytsPerSec);
+  FATOffset = rr.BPB_RootClus * 4;
+  ThisFATSecNum =  rr.BPB_RsvdSecCnt + (FATOffset / rr.BPB_BytsPerSec);
 
-  FAT_StartLoc = ThisFATSecNum*rr->BPB_BytsPerSec;
-  FAT_EndLoc = rr->BPB_FATSz32 * rr->BPB_BytsPerSec + FAT_StartLoc;
+  FAT_StartLoc = ThisFATSecNum*rr.BPB_BytsPerSec;
+  FAT_EndLoc = rr.BPB_FATSz32 * rr.BPB_BytsPerSec + FAT_StartLoc;
 }
 
 int FindFirstSectorOfCluster(int n) {
-  int FirstDataSector = rr->BPB_RsvdSecCnt + (rr->BPB_NumFATs * rr->BPB_FATSz32);
-  int FirstSectorofCluster = ((n - 2) * rr->BPB_SecPerClus) + FirstDataSector;
-  int DirLocation = FirstSectorofCluster * rr->BPB_BytsPerSec;
+  int FirstDataSector = rr.BPB_RsvdSecCnt + (rr.BPB_NumFATs * rr.BPB_FATSz32);
+  int FirstSectorofCluster = ((n - 2) * rr.BPB_SecPerClus) + FirstDataSector;
+  int DirLocation = FirstSectorofCluster * rr.BPB_BytsPerSec;
   return DirLocation;
 }
 

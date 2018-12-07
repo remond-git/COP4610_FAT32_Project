@@ -76,22 +76,6 @@ char* current_path();
 
 
 
-int (*builtin_func[]) (char **) = {
-  &shell_cd,
-  &shell_exit,
-  &shell_info,
-  &shell_ls,
-  &shell_size,
-  &shell_creat,
-  &shell_mkdir,
-  &shell_open,
-  &shell_close,
-  &shell_read,
-  &shell_write,
-  &shell_rm,
-  &shell_rmdir
-};
-
 /*
 
 ==========
@@ -467,6 +451,133 @@ int shell_exit(char **args) {
     exit(EXIT_SUCCESS);
 }
 
+
+/*
+
+BUILT IN: INFO
+
+*/
+
+int shell_info(char **args) {
+
+    exit(EXIT_SUCCESS);
+}
+
+/*
+
+BUILT IN: SIZE
+
+*/
+
+int shell_size(char **args) {
+
+    exit(EXIT_SUCCESS);
+}
+
+/*
+
+BUILT IN: creat
+
+*/
+
+int shell_creat(char **args) {
+
+    exit(EXIT_SUCCESS);
+}
+
+/*
+
+BUILT IN: MKDIR
+
+*/
+
+int shell_open(char **args) {
+
+    exit(EXIT_SUCCESS);
+}
+
+/*
+
+BUILT IN: CLOSE
+
+*/
+
+int shell_close(char **args) {
+
+    exit(EXIT_SUCCESS);
+}
+
+/*
+
+BUILT IN: READ
+
+*/
+
+int shell_read(char **args) {
+
+    exit(EXIT_SUCCESS);
+}
+
+/*
+
+BUILT IN: WRITE
+
+*/
+
+int shell_write(char **args) {
+
+    exit(EXIT_SUCCESS);
+}
+
+
+/*
+
+BUILT IN: RM
+
+*/
+
+int shell_rm(char **args) {
+
+    exit(EXIT_SUCCESS);
+}
+
+/*
+
+BUILT IN: RMDIR
+
+*/
+
+int shell_rmdir(char **args) {
+
+    exit(EXIT_SUCCESS);
+}
+
+/*
+
+BUILT IN: MKDIR
+
+*/
+
+int shell_mkdir(char **args) {
+
+    exit(EXIT_SUCCESS);
+}
+
+int (*builtin_func[]) (char **) = {
+  &shell_cd,
+  &shell_exit,
+  &shell_info,
+  &shell_ls,
+  &shell_size,
+  &shell_creat,
+  &shell_mkdir,
+  &shell_open,
+  &shell_close,
+  &shell_read,
+  &shell_write,
+  &shell_rm,
+  &shell_rmdir
+};
 
 int shell_execute(char **args) {
   int i;

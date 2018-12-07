@@ -1,9 +1,9 @@
-#include "dirparse.h"
-#include "utility.h"
+#include "../include/dirparse.h"
+#include "../include/utils.h"
 
 unsigned int CURRENT_CLUSTER = 0;
 unsigned int PREVIOUS_CLUSTER_STACK[256];
-unsigned int PREVIOUS_CLUSTER_INDEX = 0; 
+unsigned int PREVIOUS_CLUSTER_INDEX = 0;
 
 DirEntryType* GetDirectoryContents(unsigned int clusterNum)
 {
@@ -25,7 +25,7 @@ DirEntryType* GetDirectoryContents(unsigned int clusterNum)
 		do {
 			fseek(inFile, byteIndex + byteIndexOffset, SEEK_SET);
 			fread(rawData, sizeof(char), 32, inFile);
-		
+
 			//if first byte 0x00 or 0xE5
 			//then end of directory
 			if (rawData[0] == 0x00 || (unsigned char)rawData[0] == 0xE5) {
