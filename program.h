@@ -3,7 +3,7 @@
 
 #define USER_INPUT_BUFFER_LENGTH 256
 
-void RunProgram(void);
+void RunProgram(char* prompt);
 void GetUserInput(void);
 
 #endif
