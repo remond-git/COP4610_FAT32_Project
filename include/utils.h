@@ -1,5 +1,8 @@
 #ifndef _UTILS_H
 #define _UTILS_H
+#include <stdio.h>
+
+FILE* ImageFile;
 
 void OpenImageFile(const char* name);
 void CloseImageFile();
