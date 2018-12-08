@@ -32,6 +32,8 @@ Filename: `proj_3_gonzalez_sanchez_stringfellow.tar`
 ├── creat.c // Definitions of the built-ins which create a new file and directory.
 ├── cd.h // Declaration of the cd built-in.
 ├── cd.c // Definitions of the built-in which changes the current directory.
+├── open.h // Declaration of the open and close built-ins.
+├── open.c // Definitions of the built-ins which opens and closes the files for reading or writing.
 ├── rm.h // Declarations of the rm and rmdir built-ins.
 ├── rm.c // Definitions of the built-ins which delete a file and directory.
 └── FATImage.h // Declarations of the FAT32 file system reserved region fields.
