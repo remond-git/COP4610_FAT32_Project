@@ -9,13 +9,6 @@ struct ReservedRegion rr;
 
 const int ENDOFCLUSTER = 268435448;
 
-// short BPB_BytsPerSec;
-short BPB_SecPerClus;
-short BPB_RsvdSecCnt;
-short BPB_NumFATs;
-short BPB_FATSz32;
-short BPB_RootClus;
-
 unsigned int FAT_StartLoc, FAT_EndLoc;
 
 void OpenImageFile(const char* name) {
@@ -55,7 +48,7 @@ void ParseBootSector(void) {
 
   fseek(ImageFile, 0, SEEK_SET);
   fread(store_bytes, sizeof(char), 3, ImageFile);
-  rr.BS_jmpBoot = little_to_big(store_bytes, 3);
+  rr.BS_jmpBoot = little_to_big(store_bytes, 3) & 0xff;
 
   fseek(ImageFile, 3, SEEK_SET);
   fread(store_bytes, sizeof(char), 8, ImageFile);
