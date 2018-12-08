@@ -10,7 +10,7 @@ A FAT32 shell-like program capable of interpreting a FAT32 file system image fil
 
 ## Archive Contents
 
-Filename: `proj_3_gonzalez_sanchez_stringfellow.tar`
+Filename: `proj3_gonzalez_sanchez_stringfellow.tar`
 
 ```
 .
