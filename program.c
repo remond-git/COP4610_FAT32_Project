@@ -5,6 +5,7 @@
 #include "ls.h"
 #include "cd.h"
 #include "creat.h"
+#include "size.h"
 #include <stdio.h>
 #include <string.h>
 char* USER_INPUT[5];
@@ -65,6 +66,14 @@ void RunProgram(char* prompt) {
 			strcpy(parsedDir, USER_INPUT[1]);
 			ToFAT32(parsedDir);
 			mkdir(parsedDir);
+		  }
+		}
+	    else if (strcmp(USER_INPUT[0], "size") == 0) {
+		  if (strcmp(USER_INPUT[1], ". . . . .") == 0) {
+		    printf("Requires a file name argument\n");
+		  }
+		  else {
+		    size(USER_INPUT[1]);
 		  }
 		}
 	}

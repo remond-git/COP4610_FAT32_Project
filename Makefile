@@ -2,8 +2,8 @@ FLAGS = -std=c99
 
 all:	exe
 
-exe:	main.o utils.o filetable.o dirparse.o parse.o program.o ls.o creat.o cd.o
-	gcc $(FLAGS) -o FATprog.x main.o utils.o filetable.o dirparse.o parse.o program.o ls.o creat.o cd.o
+exe:	main.o utils.o filetable.o dirparse.o parse.o program.o ls.o creat.o cd.o size.o
+	gcc $(FLAGS) -o FATprog.x main.o utils.o filetable.o dirparse.o parse.o program.o ls.o creat.o cd.o size.o
 
 main.o:	main.c
 	gcc $(FLAGS) -c main.c
@@ -28,6 +28,9 @@ cd.o: cd.c cd.h
 	
 creat.o: creat.c creat.h
 	gcc $(FLAGS) -c creat.c
+
+size.o: size.c size.h
+	gcc $(FLAGS) -c size.c
 
 program.o: program.c program.h
 	gcc $(FLAGS) -c program.c
