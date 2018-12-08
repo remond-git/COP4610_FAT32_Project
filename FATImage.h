@@ -1,12 +1,10 @@
 struct ReservedRegion {
     unsigned int BS_jmpBoot;
-    char BS_OEMName[8];
-    short BPB_BytsPerSec;
-    short BPB_SecPerClus;
-    short BPB_RsvdSecCnt;
-    short BPB_NumFATs;
-    short BPB_FATSz32;
-    short BPB_RootClus;
+    char BS_OEMName[9];
+    unsigned int BPB_BytsPerSec;
+    unsigned int BPB_SecPerClus;
+    unsigned int BPB_RsvdSecCnt;
+    unsigned int BPB_NumFATs;
     unsigned int BPB_RootEntCnt;
     unsigned int BPB_TotSec16;
     unsigned int BPB_Media;
@@ -15,13 +13,17 @@ struct ReservedRegion {
     unsigned int BPB_NumHeads;
     unsigned int BPB_HiddSec;
     unsigned int BPB_TotSec32;
+    unsigned int BPB_FATSz32;
     unsigned int BPB_ExtFlags;
+    unsigned int BPB_FSVer;
+    unsigned int BPB_RootClus;
     unsigned int BPB_FSInfo;
     unsigned int BPB_BkBootSec;
     unsigned int BPB_Reserved;
     unsigned int BS_DrvNum;
+    unsigned int BS_Reserved1;
     unsigned int BS_BootSig;
     unsigned int BS_VolID;
-    unsigned int BS_VolLab;
-    char BS_FilSysType[8];
+    char BS_VolLab[12];
+    char BS_FilSysType[9];
 };
