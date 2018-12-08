@@ -48,5 +48,5 @@ To run: `FATprog.x (img file)`
 
 ## Division of Labor
 - Emmanuel Gonzalez
-- John Sanchez
+- June Sanchez
 - Andrew Stringfellow
