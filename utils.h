@@ -12,6 +12,7 @@ short GetSecPerClus(void);
 unsigned int GetRootClusterNum(void);
 int FindFirstSectorOfCluster(int n);
 void ParseBootSector(void);
+void PrintBootSector(void);
 void FindRootDirectory(void);
 
 unsigned int little_to_big(unsigned char*, int);
