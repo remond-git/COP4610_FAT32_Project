@@ -4,6 +4,9 @@
   - Emmanuel Gonzalez
   - John Sanchez
   - Andrew Stringfellow
+  
+## Problem Statement
+A FAT32 shell-like program capable of interpreting a FAT32 file system image file.
 
 ## Archive Contents
 
@@ -40,11 +43,12 @@ Filename: `proj_3_gonzalez_sanchez_stringfellow.tar`
 ```
 
 ## Build Instructions
-To build: `$make`
-To clean: `$make clean`
-To run: `FATprog.x (img file)`
+To build: `$ make`
+To clean: `$ make clean`
+To run: `$ FATprog.x (img file)`
 
 ## Known Bugs and Unfinished Portions
+- The read and write built-ins have not been implemented.
 
 ## Division of Labor
 - Emmanuel Gonzalez
