@@ -18,9 +18,6 @@ void RunProgram(char* prompt) {
 		if (strcmp(USER_INPUT[0], "exit") == 0) {
 			break;
 		}
-		else if (strcmp(USER_INPUT[0], "info") == 0) {
-			PrintBootSector();
-		}
 		else if (strcmp(USER_INPUT[0], "ls") == 0) {
 		  if (strcmp(USER_INPUT[1], ". . . . .") == 0) {
 			list(GetCurrentDirectoryClusterNum());
@@ -28,6 +25,9 @@ void RunProgram(char* prompt) {
 		  else {
 			ls(USER_INPUT[1]);
 		  }
+		}
+		else if(strcmp(USER_INPUT[0], "info") == 0) {
+		  PrintBootSector();
 		}
 		else if (strcmp(USER_INPUT[0], "cd") == 0) {
 		  if (strcmp(USER_INPUT[1], ". . . . .") == 0) {
@@ -98,22 +98,46 @@ void RunProgram(char* prompt) {
 		  }
 		}
 		else if (strcmp(USER_INPUT[0], "rmdir") == 0) {
-          if (strcmp(USER_INPUT[1],". . . . .") == 0) {
-            printf("Requires an argument for the directory name\n");
-          }
-          else if (strcmp(USER_INPUT[1],".") == 0) {
-            printf("Invalid dir name\n");
-          }
-          else if (strcmp(USER_INPUT[1],"..") == 0) {
-            printf("Invalid dir name\n");
-          }
-          else {
-            char parsedDir[USER_INPUT_BUFFER_LENGTH];
-            strcpy(parsedDir, USER_INPUT[1]);
-            ToFAT32(parsedDir);
-            rmdir(parsedDir);
-          }
-        }
+                  if (strcmp(USER_INPUT[1],". . . . .") == 0) {
+                    printf("Requires an argument for the directory name\n");
+                  }
+                  else if (strcmp(USER_INPUT[1],".") == 0) {
+                    printf("Invalid dir name\n");
+                  }
+                  else if (strcmp(USER_INPUT[1],"..") == 0) {
+                    printf("Invalid dir name\n");
+                  }
+                  else {
+                    char parsedDir[USER_INPUT_BUFFER_LENGTH];
+                    strcpy(parsedDir, USER_INPUT[1]);
+                    ToFAT32(parsedDir);
+                    rmdir(parsedDir);
+                  }
+                }
+		else if (strcmp(USER_INPUT[0], "open") == 0) {
+		  if (strcmp(USER_INPUT[1], ". . . . .") == 0 ||
+		    strcmp(USER_INPUT[2], ". . . . .") == 0)
+		  {
+		    printf("Requires a file name argument followed by a mode argument\n");
+		  }
+		  else {
+		    char parsedDir[USER_INPUT_BUFFER_LENGTH];
+		    strcpy(parsedDir, USER_INPUT[1]);
+		    ToFAT32(parsedDir);
+		    open(parsedDir, USER_INPUT[2]);
+		  }
+		}
+		else if (strcmp(USER_INPUT[0], "close") == 0) {
+		  if (strcmp(USER_INPUT[1], ". . . . .") == 0) {
+		    printf("Requires a file name argument\n");
+		  }
+		  else {
+		    char parsedDir[USER_INPUT_BUFFER_LENGTH];
+		    strcpy(parsedDir, USER_INPUT[1]);
+		    ToFAT32(parsedDir);
+		    close(parsedDir);
+		  }
+		}
 	}
 	int k = 0;
 	while (k < 5) {
