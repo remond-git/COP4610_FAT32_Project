@@ -4,6 +4,7 @@
 #include "parse.h"
 #include "ls.h"
 #include "cd.h"
+#include "rm.h"
 #include "creat.h"
 #include "size.h"
 #include <stdio.h>
@@ -68,7 +69,7 @@ void RunProgram(char* prompt) {
 			mkdir(parsedDir);
 		  }
 		}
-	    else if (strcmp(USER_INPUT[0], "size") == 0) {
+	        else if (strcmp(USER_INPUT[0], "size") == 0) {
 		  if (strcmp(USER_INPUT[1], ". . . . .") == 0) {
 		    printf("Requires a file name argument\n");
 		  }
@@ -76,6 +77,40 @@ void RunProgram(char* prompt) {
 		    size(USER_INPUT[1]);
 		  }
 		}
+		else if (strcmp(USER_INPUT[0], "rm") == 0) {
+		  if (strcmp(USER_INPUT[1],". . . . .") == 0) {
+		    printf("Requires an argument for the file name\n");
+		  }
+		  else if (strcmp(USER_INPUT[1],".") == 0) {
+		    printf("Invalid file name\n");
+		  }
+		  else if (strcmp(USER_INPUT[1],"..") == 0) {
+		    printf("Invalid file name\n");
+		  }	
+		  else {
+		    char parsedDir[USER_INPUT_BUFFER_LENGTH];
+		    strcpy(parsedDir, USER_INPUT[1]);
+		    ToFAT32(parsedDir);
+		    rm(parsedDir);
+		  }
+		}
+		else if (strcmp(USER_INPUT[0], "rmdir") == 0) {
+          if (strcmp(USER_INPUT[1],". . . . .") == 0) {
+            printf("Requires an argument for the directory name\n");
+          }
+          else if (strcmp(USER_INPUT[1],".") == 0) {
+            printf("Invalid dir name\n");
+          }
+          else if (strcmp(USER_INPUT[1],"..") == 0) {
+            printf("Invalid dir name\n");
+          }
+          else {
+            char parsedDir[USER_INPUT_BUFFER_LENGTH];
+            strcpy(parsedDir, USER_INPUT[1]);
+            ToFAT32(parsedDir);
+            rmdir(parsedDir);
+          }
+        }
 	}
 	int k = 0;
 	while (k < 5) {
