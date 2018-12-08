@@ -18,6 +18,9 @@ void RunProgram(char* prompt) {
 		if (strcmp(USER_INPUT[0], "exit") == 0) {
 			break;
 		}
+		else if (strcmp(USER_INPUT[0], "info") == 0) {
+			PrintBootSector();
+		}
 		else if (strcmp(USER_INPUT[0], "ls") == 0) {
 		  if (strcmp(USER_INPUT[1], ". . . . .") == 0) {
 			list(GetCurrentDirectoryClusterNum());
