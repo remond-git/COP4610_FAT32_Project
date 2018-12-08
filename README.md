@@ -44,7 +44,9 @@ Filename: `proj3_gonzalez_sanchez_stringfellow.tar`
 
 ## Build Instructions
 To build: `$ make`
+
 To clean: `$ make clean`
+
 To run: `$ FATprog.x (img file)`
 
 ## Known Bugs and Unfinished Portions
