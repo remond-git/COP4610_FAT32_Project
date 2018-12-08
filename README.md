@@ -51,14 +51,14 @@ To run: `$ FATprog.x (img file)`
 - The read and write built-ins have not been implemented.
 
 ## Division of Labor
-- Emmanuel Gonzalez    
+Emmanuel Gonzalez    
 • Working on Main/Shell Program    
 • Working on ls built in    
 • Working on Utility functions    
 • Cd Built-In    
 • Size Built-In    
     
-- June Sanchez    
+June Sanchez    
 • Working on Main/Shell Program    
 • Working on Utility functions    
 • File Allocation Table    
@@ -67,7 +67,7 @@ To run: `$ FATprog.x (img file)`
 • File Allocation Table    
 • Parsing functions for files/directories    
     
-- Andrew Stringfellow    
+Andrew Stringfellow    
 • Working On Main Shell Program    
 • Info Built-In    
 • Working on Utility functions    
