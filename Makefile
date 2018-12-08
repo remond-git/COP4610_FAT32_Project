@@ -1,4 +1,4 @@
-FLAGS = -std=c99
+FLAGS = -std=c99 -w
 
 all:	exe
 
